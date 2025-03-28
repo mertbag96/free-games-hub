@@ -11,7 +11,7 @@ import Footer from '@/components/layout/Footer.vue'
         <Header></Header>
 
         <!-- Page Content -->
-        <RouterView class="min-h-page" />
+        <RouterView />
 
         <!-- Footer -->
         <Footer></Footer>

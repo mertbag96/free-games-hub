@@ -10,7 +10,7 @@ export default {
         default: ['Ubuntu', 'sans-serif'],
       },
       minHeight: {
-        'page': 'calc(100dvh - 130px)',
+        'page': 'calc(100dvh - 138px)',
       },
       colors: {
         primary: '#ef4c4f',
@@ -18,6 +18,8 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/line-clamp')
+  ]
 }
 

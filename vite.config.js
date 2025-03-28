@@ -9,6 +9,13 @@ export default defineConfig({
   ],
   server: {
     port: 3000,
+    proxy: {
+      '/api': {
+        target: 'https://www.freetogame.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '/api'),
+      },
+    },
   },
   resolve: {
     alias: {
