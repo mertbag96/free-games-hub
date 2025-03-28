@@ -7,8 +7,15 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Poppins', 'sans-serif'],
-      }
+        default: ['Ubuntu', 'sans-serif'],
+      },
+      minHeight: {
+        'page': 'calc(100dvh - 130px)',
+      },
+      colors: {
+        primary: '#ef4c4f',
+        secondary: '#003556'
+      },
     },
   },
   plugins: [],
