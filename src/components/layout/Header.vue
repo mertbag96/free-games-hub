@@ -1,6 +1,7 @@
 <script setup>
-import Link from '@/components/ui/link.vue'
+import { RouterLink } from 'vue-router'
 import Logo from '@/components/layout/Logo.vue'
+import { MagnifyingGlassIcon } from '@heroicons/vue/24/solid'
 </script>
 
 <template>
@@ -12,16 +13,29 @@ import Logo from '@/components/layout/Logo.vue'
             <Logo />
 
             <!-- Menu -->
-            <div class="flex justify-between items-center space-x-2">
+            <div class="flex justify-between items-center space-x-4">
+                <!-- Search -->
+                <RouterLink
+                    to="/games"
+                >
+                    <MagnifyingGlassIcon class="size-7 text-secondary" />
+                </RouterLink>
+
                 <!-- Browse Games -->
-                <Link url="/games" class="bg-secondary rounded-lg p-2 font-semibold text-sm text-slate-50 hover:bg-sky-900 transition-colors duration-200">
+                <RouterLink 
+                    to="/games" 
+                    class="bg-secondary rounded-lg p-2 font-semibold text-sm text-slate-50 hover:bg-sky-900 transition-colors duration-200"
+                >
                     Browse Games
-                </Link>
+                </RouterLink>
 
                 <!-- Get Started -->
-                <Link url="/login" class="bg-primary rounded-lg p-2 font-semibold text-sm text-slate-50 hover:bg-red-600 transition-colors duration-200">
+                <RouterLink 
+                    to="/login" 
+                    class="bg-primary rounded-lg p-2 font-semibold text-sm text-slate-50 hover:bg-red-600 transition-colors duration-200"
+                >
                     Get Started
-                </Link>
+                </RouterLink>
             </div>
         </nav>
     </header>

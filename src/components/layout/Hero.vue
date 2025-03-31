@@ -1,5 +1,5 @@
 <script setup>
-import Link from '@/components/ui/Link.vue'
+import { RouterLink } from 'vue-router'
 </script>
 
 <template>
@@ -18,18 +18,18 @@ import Link from '@/components/ui/Link.vue'
         <!-- Links -->
         <div class="flex space-x-4">
             <!-- Browse Games -->
-            <Link 
-                url="/games" 
+            <RouterLink 
+                to="/games" 
                 class="py-2 px-4 rounded-lg bg-transparent border-2 border-slate-50 font-bold text-sm sm:text-md text-slate-50 hover:bg-slate-50 hover:text-primary transition-colors duration-300">
                 Browse Games
-            </Link>
+            </RouterLink>
 
             <!-- Get Started -->
-            <Link 
-                url="/login" 
+            <RouterLink 
+                to="/login" 
                 class="py-2 px-4 rounded-lg bg-primary border-2 border-primary font-bold text-sm sm:text-md text-slate-50 hover:bg-red-600 hover:border-red-600 transition-colors duration-300">
                 Get Started
-            </Link>
+            </RouterLink>
         </div>
     </section>
 </template>

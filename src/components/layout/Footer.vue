@@ -19,7 +19,8 @@ import Logo from '@/components/Layout/Logo.vue'
                     url="https://freetogame.com/" 
                     class="font-semibold text-primary hover:text-secondary transition-colors duration-200" 
                     target="_blank"
-                >FreeToGame
+                >
+                FreeToGame
                 </Link>
             </div>
         </div>

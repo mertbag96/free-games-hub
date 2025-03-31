@@ -1,5 +1,6 @@
 <script setup>
 import { defineProps } from 'vue'
+import { RouterLink } from 'vue-router'
 import Link from '@/components/ui/Link.vue'
 import Image from '@/components/ui/Image.vue'
 
@@ -14,7 +15,11 @@ defineProps({
 <template>
     <div class="border shadow-md rounded-lg bg-slate-50 h-full flex flex-col">
         <!-- Thumbnail -->
-        <Image :src="game.thumbnail" :alt="game.title" class="rounded-t-lg shadow-sm w-full" />
+        <Image 
+            :src="game.thumbnail" 
+            :alt="game.title" 
+            class="rounded-t-lg shadow-sm w-full" 
+        />
 
         <!-- Details -->
         <div class="flex flex-col gap-4 p-4">
@@ -31,17 +36,19 @@ defineProps({
             <!-- Actions -->
             <div class="flex justify-between items-center">
                 <!-- See Details -->
-                <Link 
-                    :url="'/games/' + game.id" 
-                    class="w-[48%] rounded bg-primary sm:px-1 p-2 font-semibold text-slate-50 text-xs text-center hover:bg-red-600 transition-colors duration-200">
+                <RouterLink 
+                    :to="'/games/' + game.id"
+                    class="w-[48%] rounded bg-primary sm:px-1 p-2 font-semibold text-slate-50 text-xs text-center hover:bg-red-600 transition-colors duration-200"
+                >
                     See Details
-                </Link>
+                </RouterLink>
 
                 <!-- Play Now -->
                 <Link 
                     target="_blank"
                     :url="game.game_url" 
-                    class="w-[48%] rounded bg-secondary sm:px-1 p-2 font-semibold text-slate-50 text-xs text-center hover:bg-sky-900 transition-colors duration-200">
+                    class="w-[48%] rounded bg-secondary sm:px-1 p-2 font-semibold text-slate-50 text-xs text-center hover:bg-sky-900 transition-colors duration-200"
+                >
                     Play Now
                 </Link>
             </div>
