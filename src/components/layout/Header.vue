@@ -1,7 +1,17 @@
 <script setup>
-import { RouterLink } from 'vue-router'
 import Logo from '@/components/layout/Logo.vue'
+import {RouterLink, useRouter } from 'vue-router'
+import { useAuthStore } from '@/stores/authStore.js'
 import { MagnifyingGlassIcon } from '@heroicons/vue/24/solid'
+import { ArrowLeftStartOnRectangleIcon } from '@heroicons/vue/24/solid'
+
+const router = useRouter()
+const authStore = useAuthStore()
+
+const signOut = async () => {
+    await authStore.handleSignOut()
+    router.push('/')
+}
 </script>
 
 <template>
@@ -31,11 +41,22 @@ import { MagnifyingGlassIcon } from '@heroicons/vue/24/solid'
 
                 <!-- Get Started -->
                 <RouterLink 
-                    to="/login" 
+                    v-if="!authStore.isSignedIn"
+                    to="/sign-in" 
                     class="bg-primary rounded-lg p-2 font-semibold text-sm text-slate-50 hover:bg-red-600 transition-colors duration-200"
                 >
                     Get Started
                 </RouterLink>
+
+                <!-- Log Out -->
+                <button 
+                    v-if="authStore.isSignedIn"
+                    @click="signOut" 
+                    class="flex items-center space-x-1 bg-primary rounded-lg p-2 font-semibold text-sm text-slate-50 hover:bg-red-600 transition-colors duration-200"
+                >
+                    <ArrowLeftStartOnRectangleIcon class="size-5 text-slate-50" />
+                    <span>Sign Out</span>
+                </button>
             </div>
         </nav>
     </header>

@@ -1,5 +1,8 @@
 <script setup>
 import { RouterLink } from 'vue-router'
+import { useAuthStore } from '@/stores/authStore.js'
+
+const authStore = useAuthStore()
 </script>
 
 <template>
@@ -26,7 +29,8 @@ import { RouterLink } from 'vue-router'
 
             <!-- Get Started -->
             <RouterLink 
-                to="/login" 
+                v-if="!authStore.isSignedIn"
+                to="/sign-in" 
                 class="py-2 px-4 rounded-lg bg-primary border-2 border-primary font-bold text-sm sm:text-md text-slate-50 hover:bg-red-600 hover:border-red-600 transition-colors duration-300">
                 Get Started
             </RouterLink>

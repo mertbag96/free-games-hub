@@ -1,6 +1,6 @@
 <script setup>
 import Link from '@/components/ui/Link.vue'
-import Logo from '@/components/Layout/Logo.vue'
+import Logo from '@/components/layout/Logo.vue'
 </script>
 
 <template>
