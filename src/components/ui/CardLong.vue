@@ -1,73 +1,63 @@
 <script setup>
-import { defineProps } from 'vue'
 import { RouterLink } from 'vue-router'
 import Image from '@/components/ui/Image.vue'
+import Badge from '@/components/ui/Badge.vue'
 
 defineProps({
     game: {
         type: Object,
-        required: true
-    }
+        required: true,
+    },
 })
 
 const formatDate = (date) => {
-    const [year, month, day] = date.split("-");
-    return `${day}.${month}.${year}`;
+    if (!date) return ''
+    const [year, month, day] = date.split('-')
+    return `${day}.${month}.${year}`
 }
 </script>
 
 <template>
     <RouterLink
-        :to="'/games/' + game.id">
-        <div class="border shadow-md rounded-lg bg-slate-50 flex justify-between p-4 hover:scale-[101%] transition duration-200">
-            <!-- Thumbnail -->
-            <Image 
-                :src="game.thumbnail" 
-                :alt="game.title" 
-                class="rounded-t-lg shadow-sm w-[16%]" 
-            />
-
-            <!-- Details -->
-            <div class="flex flex-col justify-between w-[84%] ps-4">
-                <!-- Title, Release Date & Description -->
-                <div class="flex flex-col space-y-2">
-                    <!-- Title & Release Date -->
-                    <div class="flex justify-between items-center">
-                        <!-- Title -->
-                        <h1 class="font-bold text-secondary">
+        :to="'/games/' + game.id"
+        class="group block rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+    >
+        <article
+            class="flex flex-col gap-4 rounded-2xl border border-slate-200/90 bg-white p-4 shadow-[0_1px_3px_rgb(15_23_42/0.06)] ring-1 ring-slate-100 transition-[transform,box-shadow] hover:-translate-y-0.5 hover:shadow-md sm:flex-row sm:items-stretch sm:gap-5 sm:p-5"
+        >
+            <div
+                class="aspect-video w-full shrink-0 overflow-hidden rounded-xl bg-slate-100 sm:w-40 md:w-44 lg:w-48"
+            >
+                <Image
+                    :src="game.thumbnail"
+                    :alt="game.title"
+                    class="h-full w-full object-cover transition duration-300 group-hover:scale-[1.02]"
+                />
+            </div>
+            <div class="flex min-w-0 flex-1 flex-col justify-between gap-4">
+                <div class="space-y-2">
+                    <div class="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
+                        <h3 class="text-lg font-bold leading-snug text-secondary md:text-xl">
                             {{ game.title }}
-                        </h1>
-
-                        <!-- Release Date -->
-                        <span class="font-semibold text-secondary text-sm">
+                        </h3>
+                        <time
+                            v-if="game.release_date"
+                            class="whitespace-nowrap text-sm font-semibold text-slate-500 tabular-nums sm:pt-0.5"
+                            :datetime="game.release_date"
+                        >
                             {{ formatDate(game.release_date) }}
-                        </span>
+                        </time>
                     </div>
-
-                    <!-- Description -->
-                    <p class="text-sm text-gray-600 line-clamp-2 sm:line-clamp-1 md:line-clamp-2">
+                    <p class="line-clamp-2 text-sm leading-relaxed text-slate-600 md:line-clamp-3">
                         {{ game.short_description }}
                     </p>
                 </div>
-
-                <!-- Genre, Platform, Publisher -->
-                <div class="flex items-center space-x-2">
-                    <!-- Genre -->
-                    <span class="bg-primary py-1 px-2 rounded-lg font-semibold text-slate-50 text-xs">
-                        {{ game.genre }}
-                    </span>
-
-                    <!-- Platform -->
-                    <span class="bg-primary py-1 px-2 rounded-lg font-semibold text-slate-50 text-xs">
-                        {{ game.platform }}
-                    </span>
-
-                    <!-- Publisher -->
-                    <span class="bg-primary py-1 px-2 rounded-lg font-semibold text-slate-50 text-xs">
-                        {{ game.publisher }}
-                    </span>
+                <div class="flex flex-wrap gap-2">
+                    <Badge v-if="game.genre">{{ game.genre }}</Badge>
+                    <Badge v-if="game.platform">{{ game.platform }}</Badge>
+                    <Badge v-if="game.publisher" variant="muted">{{ game.publisher }}</Badge>
                 </div>
             </div>
-        </div>
+        </article>
     </RouterLink>
 </template>

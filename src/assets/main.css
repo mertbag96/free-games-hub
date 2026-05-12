@@ -1,6 +1,61 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@theme {
+  --font-default: Ubuntu, sans-serif;
+
+  --min-height-page: calc(100dvh - 138px);
+
+  --color-primary: #ef4c4f;
+  --color-secondary: #003556;
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+
+  ::file-selector-button {
+    cursor: pointer;
+  }
+
+  /**
+   * Consistent interaction affordance across the app (RouterLink resolves to <a href>,
+   * native buttons, form controls often missed by component-level classes).
+   */
+  :where(
+    a[href],
+    summary,
+    button:not(:disabled),
+    select:not(:disabled),
+    input[type='button']:not(:disabled),
+    input[type='submit']:not(:disabled),
+    input[type='reset']:not(:disabled),
+    input[type='image']:not(:disabled),
+    input[type='checkbox']:not(:disabled),
+    input[type='radio']:not(:disabled),
+    input[type='file']:not(:disabled),
+    label:has(input[type='checkbox']:not(:disabled)),
+    label:has(input[type='radio']:not(:disabled))
+  ) {
+    cursor: pointer;
+  }
+
+  :where(button:disabled, input:disabled, select:disabled, textarea:disabled, a[href][aria-disabled='true']) {
+    cursor: not-allowed;
+  }
+}
 
 * {
     scrollbar-width: none;
@@ -9,4 +64,9 @@
 
 *::-webkit-scrollbar {
     display: none;
+}
+
+::selection {
+    background-color: color-mix(in srgb, #ef4c4f 25%, transparent);
+    color: #003556;
 }

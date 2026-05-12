@@ -1,8 +1,13 @@
 import HomeView from '@/views/HomeView.vue'
 import GameView from '@/views/GameView.vue'
 import GamesView from '@/views/GamesView.vue'
+import PlatformsView from '@/views/PlatformsView.vue'
+import CategoriesView from '@/views/CategoriesView.vue'
+import LibraryView from '@/views/LibraryView.vue'
 import SignInView from '@/views/SignInView.vue'
 import SignUpView from '@/views/SignUpView.vue'
+import PrivacyPolicyView from '@/views/PrivacyPolicyView.vue'
+import TermsOfUseView from '@/views/TermsOfUseView.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 
@@ -23,6 +28,21 @@ const routes = [
         */
     },
     {
+        path: '/library',
+        name: 'library',
+        component: LibraryView,
+    },
+    {
+        path: '/platforms',
+        name: 'platforms',
+        component: PlatformsView,
+    },
+    {
+        path: '/categories',
+        name: 'categories',
+        component: CategoriesView,
+    },
+    {
         path: '/games/:id',
         name: 'game',
         component: GameView
@@ -30,12 +50,22 @@ const routes = [
     {
         path: '/sign-in',
         name: 'sign-in',
-        component: SignInView
+        component: SignInView,
     },
     {
         path: '/sign-up',
         name: 'sign-up',
-        component: SignUpView
+        component: SignUpView,
+    },
+    {
+        path: '/privacy',
+        name: 'privacy',
+        component: PrivacyPolicyView,
+    },
+    {
+        path: '/terms',
+        name: 'terms',
+        component: TermsOfUseView,
     },
 ]
 

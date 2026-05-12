@@ -2,6 +2,7 @@
 import { reactive, onMounted } from 'vue'
 import Hero from '@/components/layout/Hero.vue'
 import Games from '@/components/layout/Games.vue'
+import HomeCatalogStats from '@/components/layout/HomeCatalogStats.vue'
 
 const state = reactive({
     games: [],
@@ -26,6 +27,9 @@ onMounted(async () => {
     <!-- Hero -->
     <Hero />
 
-    <!-- Games -->
+    <!-- New releases -->
     <Games :games="state.games" :loading="state.loading" />
+
+    <!-- Catalog overview -->
+    <HomeCatalogStats :games-count="state.games.length" :loading="state.loading" />
 </template>

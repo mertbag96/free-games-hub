@@ -2,18 +2,18 @@
 import { RouterView } from 'vue-router'
 import Header from '@/components/layout/Header.vue'
 import Footer from '@/components/layout/Footer.vue'
+import CookieConsent from '@/components/layout/CookieConsent.vue'
+import LibraryToast from '@/components/layout/LibraryToast.vue'
 </script>
 
 <template>
-    <!-- Main -->
-    <main class="bg-slate-50">
-        <!-- Header -->
-        <Header></Header>
-
-        <!-- Page Content -->
-        <RouterView />
-
-        <!-- Footer -->
-        <Footer></Footer>
-    </main>
+    <div class="flex min-h-dvh flex-col bg-slate-50 text-slate-900">
+        <Header />
+        <main class="relative flex flex-1 flex-col">
+            <RouterView />
+        </main>
+        <Footer class="mt-auto" />
+        <CookieConsent />
+        <LibraryToast />
+    </div>
 </template>
